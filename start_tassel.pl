@@ -3,8 +3,8 @@
 use strict;
 use File::Basename;
 
-my $top = dirname(__FILE__);
-$top //= '.';
+my $dirname = dirname(__FILE__);
+my $top = defined($dirname) ? $dirname : '.';
 
 my $libdir = "$top/lib";
 opendir (DIR, "$libdir") || die "Could not open $libdir\n";
