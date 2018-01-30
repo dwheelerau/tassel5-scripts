@@ -1,1 +1,3 @@
-tutorial/
+*
+!*.sh
+!.gitignore
