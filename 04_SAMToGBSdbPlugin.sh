@@ -40,11 +40,14 @@
 #the data is considered inconsistent and no alignments are added to 
 #the database tables.
 
+MAPPER="bowtie2"
+echo "Mapping tags to reference using $MAPPER"
+
 LOG=./tutorial/Logfile/SAMtoGBSdb.log
 rm -f $LOG
 # set mapq to 10, default is 0
 ./run_pipeline.pl -fork1 -SAMToGBSdbPlugin \
   -i ./tutorial/04_tagSam/tagsForAlignFullvs.sam \
-  -db ./tutorial/02_database/data.db \
+  -db ./tutorial/02_database/data.db -mapper $MAPPER \
   -aProp 0.0 -aLen 0 -minMAPQ 10 -endPlugin \
   -runfork1 2>&1 | tee -a $LOG
