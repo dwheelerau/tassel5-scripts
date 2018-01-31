@@ -49,9 +49,16 @@
 
 LOG=./tutorial/Logfile/SNPQualityProfiler.log
 rm -f $LOG
+STATS="./tutorial/05_SNPqualityStats/outputStats.txt"
 
 ./run_pipeline.pl -fork1 -SNPQualityProfilerPlugin \
   -db ./tutorial/02_database/data.db \
-  -statFile ./tutorial/05_SNPqualityStats/outputStats.txt \
+  -statFile $STATS \
   -deleteOldData true \
   -endPlugin -runfork1 2>&1 | tee -a $LOG
+
+echo "check the stats file $STATS for SNP quality measures"
+echo "Optionally run ./UpdateSNPQualityPlugin.sh to add quality values "
+echo "to the SNP table ProductionSNPCallerPluginV2 plugin to pull only "
+echo "positions whose value exceed a specified value."
+echo "But this requires some fore thought."
